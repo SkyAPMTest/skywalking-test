@@ -1,1 +1,1 @@
-com.a.eye.skywalking.toolkit.opentracing.SkyWalkingTracer
+org.skywalking.apm.toolkit.opentracing.SkyWalkingTracer

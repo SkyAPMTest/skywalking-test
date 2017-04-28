@@ -20,8 +20,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.a.eye</groupId>
-            <artifactId>skywalking-toolkit-trace-context</artifactId>
+            <groupId>org.skywalking</groupId>
+            <artifactId>apm-toolkit-trace-context</artifactId>
             <version>${skywalking.version}</version>
         </dependency>
         <!-- API -->
