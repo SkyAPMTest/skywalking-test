@@ -1,0 +1,96 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.a.eye</groupId>
+    <artifactId>skywalking-test</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>portal-project</module>
+        <module>presistence-project</module>
+        <module>cache-project</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <name>skywalking-test</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <motan.version>0.2.2</motan.version>
+        <dubbox.version>2.8.4</dubbox.version>
+        <jedis.version>3.6.5</jedis.version>
+        <spring.version>4.3.2.RELEASE</spring.version>
+        <opentracing.version>0.20.7</opentracing.version>
+        <skywalking.version>3.0.1-2017</skywalking.version>
+        <docker.plugin.version>0.4.13</docker.plugin.version>
+        <source.compiler.level>1.8</source.compiler.level>
+        <target.compiler.level>1.8</target.compiler.level>
+        <docker.imageTag.version>1.0.0</docker.imageTag.version>
+        <!-- image name-->
+        <docker.cache.imageName>skywalking/test-cache-server</docker.cache.imageName>
+        <docker.portal.imageName>skywalking/test-portal</docker.portal.imageName>
+        <docker.persistence.imageName>skywalking/test-persistence-server</docker.persistence.imageName>
+    </properties>
+
+    <dependencies>
+        <!-- log4j-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.a.eye</groupId>
+            <artifactId>skywalking-toolkit-log4j-1.x</artifactId>
+            <version>${skywalking.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.a.eye</groupId>
+            <artifactId>skywalking-toolkit-log4j-2.x</artifactId>
+            <version>${skywalking.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.a.eye</groupId>
+            <artifactId>skywalking-toolkit-opentracing</artifactId>
+            <version>${skywalking.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker.plugin.version}</version>
+                <configuration>
+                    <skipDocker>true</skipDocker>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${source.compiler.level}</source>
+                    <target>${target.compiler.level}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

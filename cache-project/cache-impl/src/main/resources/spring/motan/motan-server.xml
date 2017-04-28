@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:motan="http://api.weibo.com/schema/motan"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+   http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
+
+    <bean id="cacheService" class="com.a.eye.skywalking.test.cache.CacheServiceImpl"/>
+    <motan:protocol name="motan" loadbalance="roundrobin"/>
+    <motan:registry regProtocol="zookeeper" name="zoo" address="127.0.0.1:2181"/>
+    <motan:service interface="com.a.eye.skywalking.test.cache.CacheService" ref="cacheService" filter="opentracing"
+                   export="18002" registry="zoo" requestTimeout="1200000"/>
+</beans>
