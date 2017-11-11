@@ -6,7 +6,7 @@
    http://api.weibo.com/schema/motan http://api.weibo.com/schema/motan.xsd">
 
     <motan:protocol name="motan" loadbalance="roundrobin"/>
-    <motan:registry regProtocol="zookeeper" name="zoo" address="127.0.0.1:2181"/>
+    <motan:registry regProtocol="zookeeper" name="zoo" address="${motan.registry.center}"/>
     <motan:referer id="cacheService" interface="com.a.eye.skywalking.test.cache.CacheService" filter="opentracing"
                    registry="zoo" requestTimeout="1200000" />
 </beans>

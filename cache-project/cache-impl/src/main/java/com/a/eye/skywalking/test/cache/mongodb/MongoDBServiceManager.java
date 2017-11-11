@@ -21,10 +21,6 @@ public class MongoDBServiceManager {
     private int mongoPort;
 
     public void updateCache(String key, String value) {
-        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
-        for (int i = 0; i < 1000; i++) {
-            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        }
         MongoClient mongo = new MongoClient(mongoHost, mongoPort);
         MongoDatabase mongoDatabase = mongo.getDatabase("skywalking-test-db");
         MongoCollection<Document> table = mongoDatabase.getCollection("skywalking-test");

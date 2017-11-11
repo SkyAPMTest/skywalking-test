@@ -1,8 +1,7 @@
-FROM tomcat:8.0.39-jre8
+FROM tomcat:8.0.39-jre8-alpine
 
-ENV USER_NAME=test \
-    APPLICATION_CODE=test \
-    SERVER_LIST=127.0.0.1:34000
+ENV ZK_ADDRESS=127.0.0.1:2181 \
+    COLLECTOR_SERVERS=127.0.0.1:10800
 
 ENV JPDA_ADDRESS="8000"
 ENV JPDA_TRANSPORT="dt_socket"
@@ -10,15 +9,18 @@ ENV JPDA_TRANSPORT="dt_socket"
 RUN mkdir -p /usr/local/skywalking/agent
 
 COPY catalina.sh /usr/local/tomcat/bin
-ADD portal.war /usr/local/tomcat/webapps
+ADD portal /usr/local/tomcat/webapps/portal
+COPY config.properties /usr/local/tomcat/webapps/portal/WEB-INF/classes/config.properties
+
+COPY docker-entrypoint.sh /
 
 VOLUME /usr/local/skywalking/agent
-RUN chmod +x /usr/local/tomcat/bin/*.sh
+RUN chmod +x /usr/local/tomcat/bin/*.sh && chmod +x /docker-entrypoint.sh
 
 EXPOSE 8080 8000
 
-
-ENTRYPOINT ["/usr/local/tomcat/bin/catalina.sh", "jpda", "run"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/usr/local/tomcat/bin/catalina.sh", "jpda", "run"]
 
 
 

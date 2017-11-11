@@ -7,7 +7,7 @@
 
     <bean id="cacheService" class="com.a.eye.skywalking.test.cache.CacheServiceImpl"/>
     <motan:protocol name="motan" loadbalance="roundrobin"/>
-    <motan:registry regProtocol="zookeeper" name="zoo" address="127.0.0.1:2181"/>
+    <motan:registry regProtocol="zookeeper" name="zoo" address="${motan.registry.center}"/>
     <motan:service interface="com.a.eye.skywalking.test.cache.CacheService" ref="cacheService" filter="opentracing"
                    export="18002" registry="zoo" requestTimeout="1200000"/>
 </beans>

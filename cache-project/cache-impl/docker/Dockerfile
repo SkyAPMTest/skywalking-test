@@ -1,15 +1,19 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-alpine
 
-ENV USER_NAME=test \
-    APPLICATION_CODE=test \
-    SERVER_LIST=127.0.0.1:34000
+ENV COLLECTOR_SERVERS=127.0.0.1:10800 \
+    REDIS_HOST=127.0.0.1 \
+    REDIS_PORT=6379 \
+    MONGO_HOST=127.0.0.1 \
+    MONGO_PORT=27017 \
+    ZK_ADDRESS=127.0.0.1:2181
 
-RUN mkdir -p /usr/local/skywalking/agent && mkdir -p /usr/local/skywalking/cache-server/libs
+RUN mkdir -p /usr/local/skywalking/agent
 
-COPY cache-server.jar /usr/local/skywalking/cache-server
-ADD libs /usr/local/skywalking/cache-server/libs
-COPY cache-start.sh /usr/local/skywalking/cache-server
-RUN chmod +x /usr/local/skywalking/cache-server/cache-start.sh
+ADD cache-server.tar.gz /usr/local/skywalking
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+COPY config.properties /usr/local/skywalking/cache-server/config/config.properties
 
 VOLUME /usr/local/skywalking/agent
-ENTRYPOINT ["/usr/local/skywalking/cache-server/cache-start.sh"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/usr/local/skywalking/cache-server/bin/cache-start.sh"]

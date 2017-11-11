@@ -32,10 +32,6 @@ public class H2ServiceManager {
         "VALUES(:cacheValue, :cacheKey)";
 
     public String find(String key) {
-        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
-        for (int i = 0; i < 1000; i++) {
-            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        }
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("cacheKey", key);
         List<CacheItem> item = namedParameterJdbcTemplate.query(QUERY_SQL, param, new CacheItemMapper());
@@ -46,15 +42,11 @@ public class H2ServiceManager {
     }
 
     public void updateCache(String key, String cacheValue) {
-        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
-        for (int i = 0; i < 1000; i++) {
-            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        }
-       Map<String, Object> param = new HashMap<String, Object>();
-       param.put("cacheKey", key);
-       param.put("cacheValue", cacheValue);
+        Map<String, Object> param = new HashMap<String, Object>();
+        param.put("cacheKey", key);
+        param.put("cacheValue", cacheValue);
 
-       namedParameterJdbcTemplate.update(INSERT_SQL, param);
+        namedParameterJdbcTemplate.update(INSERT_SQL, param);
     }
 
     public class CacheItemMapper implements RowMapper<CacheItem> {

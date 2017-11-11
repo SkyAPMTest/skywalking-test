@@ -6,7 +6,7 @@
 	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="persistence-consumer"/>
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:registry address="${dubbox.registry.center}"/>
     <dubbo:protocol name="rest" port="20880" server="tomcat"/>
     <dubbo:reference id="persistenceService"
                      interface="com.a.eye.skywalking.test.persistence.PersistenceService" timeout="1200000"/>

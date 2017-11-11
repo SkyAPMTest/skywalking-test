@@ -32,10 +32,6 @@ public class JedisServiceManager {
     private static JedisPool jedisPool;
 
     public String find(String key) {
-        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
-        for (int i = 0; i < 1000; i++) {
-            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        }
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
@@ -64,10 +60,6 @@ public class JedisServiceManager {
     }
 
     public void updateCache(String key, String cacheValue) {
-        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
-        for (int i = 0; i < 1000; i++) {
-            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
-        }
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
