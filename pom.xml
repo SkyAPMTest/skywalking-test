@@ -23,7 +23,7 @@
         <jedis.version>3.6.5</jedis.version>
         <spring.version>4.3.2.RELEASE</spring.version>
         <opentracing.version>0.20.7</opentracing.version>
-        <skywalking.version>3.1-2017</skywalking.version>
+        <skywalking.version>3.2.4-2017</skywalking.version>
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <source.compiler.level>1.8</source.compiler.level>
         <target.compiler.level>1.8</target.compiler.level>

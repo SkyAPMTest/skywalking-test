@@ -2,6 +2,8 @@ package com.a.eye.skywalking.test.persistence.mysql;
 
 import com.a.eye.skywalking.test.persistence.CacheItem;
 
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +43,10 @@ public class MySqlServiceManager {
     private static final String INSERT_DATA_SQL = "INSERT INTO `test`.`CACHE_TABLE` (`id`, `CACHE_KEY`, `CACHE_VALUE`) VALUES (1, \"test\", \"test\");";
 
     public CacheItem find(String key) {
+        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
+        for (int i = 0; i < 1000; i++) {
+            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+        }
         initSchemaAndDataIfNecessary();
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("cacheKey", key);

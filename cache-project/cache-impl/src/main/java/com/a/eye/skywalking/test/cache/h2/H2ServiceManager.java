@@ -1,5 +1,7 @@
 package com.a.eye.skywalking.test.cache.h2;
 
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -20,10 +22,20 @@ public class H2ServiceManager {
     @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    private static final String QUERY_SQL = "SELECT id,CACHE_VALUE, CACHE_KEY FROM CACHE_TABLE WHERE CACHE_KEY = :cacheKey";
-    private static final String INSERT_SQL = "INSERT INTO CACHE_TABLE(CACHE_VALUE, CACHE_KEY) VALUES(:cacheValue, :cacheKey)";
+    private static final String QUERY_SQL = "SELECT " +
+        "id,CACHE_VALUE,\n" +
+        " CACHE_KEY " +
+        "FROM CACHE_TABLE \n" +
+        "WHERE CACHE_KEY = :cacheKey\n";
+    private static final String INSERT_SQL = "INSERT \n" +
+        "INTO CACHE_TABLE(CACHE_VALUE, CACHE_KEY) \n" +
+        "VALUES(:cacheValue, :cacheKey)";
 
     public String find(String key) {
+        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
+        for (int i = 0; i < 1000; i++) {
+            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+        }
         Map<String, Object> param = new HashMap<String, Object>();
         param.put("cacheKey", key);
         List<CacheItem> item = namedParameterJdbcTemplate.query(QUERY_SQL, param, new CacheItemMapper());
@@ -34,6 +46,10 @@ public class H2ServiceManager {
     }
 
     public void updateCache(String key, String cacheValue) {
+        Map<String, String> forTest = new ConcurrentHashMap<String, String>();
+        for (int i = 0; i < 1000; i++) {
+            forTest.put(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+        }
        Map<String, Object> param = new HashMap<String, Object>();
        param.put("cacheKey", key);
        param.put("cacheValue", cacheValue);
