@@ -10,6 +10,7 @@
         <module>portal-project</module>
         <module>presistence-project</module>
         <module>cache-project</module>
+        <module>agent-project</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -32,6 +33,7 @@
         <docker.cache.imageName>skywalking/test-cache-server</docker.cache.imageName>
         <docker.portal.imageName>skywalking/test-portal</docker.portal.imageName>
         <docker.persistence.imageName>skywalking/test-persistence-server</docker.persistence.imageName>
+        <docker.agent.imageName>skywalking/skywalking-agent</docker.agent.imageName>
     </properties>
 
     <dependencies>

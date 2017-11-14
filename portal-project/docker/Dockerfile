@@ -6,7 +6,7 @@ ENV ZK_ADDRESS=127.0.0.1:2181 \
 ENV JPDA_ADDRESS="8000"
 ENV JPDA_TRANSPORT="dt_socket"
 
-RUN mkdir -p /usr/local/skywalking/agent
+RUN mkdir -p /usr/local/skywalking-agent
 
 COPY catalina.sh /usr/local/tomcat/bin
 ADD portal /usr/local/tomcat/webapps/portal
@@ -14,7 +14,7 @@ COPY config.properties /usr/local/tomcat/webapps/portal/WEB-INF/classes/config.p
 
 COPY docker-entrypoint.sh /
 
-VOLUME /usr/local/skywalking/agent
+VOLUME /usr/local/skywalking-agent
 RUN chmod +x /usr/local/tomcat/bin/*.sh && chmod +x /docker-entrypoint.sh
 
 EXPOSE 8080 8000

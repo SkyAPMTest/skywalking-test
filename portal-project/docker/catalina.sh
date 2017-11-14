@@ -105,14 +105,14 @@
 # -----------------------------------------------------------------------------
 
 # skywalking javaagent config
-SKYWALKING_AGENT_FILE="/usr/local/skywalking/agent/skywalking-agent.jar"
+SKYWALKING_AGENT_FILE="/usr/local/skywalking-agent/skywalking-agent.jar"
 
 SKYWALKING_OPTS=""
 # check agent file
 if [ ! -f "$SKYWALKING_AGENT_FILE" ]; then
     echo "skywalking agent file cannot be found."
 else
-    SKYWALKING_OPTS=" -javaagent:$SKYWALKING_AGENT_FILE -Dagent.application_code=cache-service -Dcollector.servers=${COLLECTOR_SERVERS} "
+    SKYWALKING_OPTS=" -javaagent:$SKYWALKING_AGENT_FILE -Dskywalking.agent.application_code=portal-service -Dskywalking.collector.servers=${COLLECTOR_SERVERS} "
 fi
 
 # OS specific support.  $var _must_ be set to either true or false.

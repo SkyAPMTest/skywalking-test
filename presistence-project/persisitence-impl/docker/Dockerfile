@@ -6,14 +6,14 @@ ENV MYSQL_ADDRESS=127.0.0.1:3306 \
     ZK_ADDRESS=127.0.0.1:2181 \
     COLLECTOR_SERVERS=127.0.0.1:10800
 
-RUN mkdir -p /usr/local/skywalking/agent
+RUN mkdir -p /usr/local/skywalking-agent
 
 ADD persistence-server.tar.gz /usr/local/skywalking
 COPY docker-entrypoint.sh /
 COPY config.properties /usr/local/skywalking/persistence-server/config/config.properties
 RUN chmod +x /docker-entrypoint.sh
 
-VOLUME /usr/local/skywalking/agent
+VOLUME /usr/local/skywalking-agent
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/local/skywalking/persistence-server/bin/persistence-start.sh"]
