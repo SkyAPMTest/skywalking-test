@@ -4,7 +4,7 @@
     <parent>
         <artifactId>cache-project</artifactId>
         <groupId>com.a.eye</groupId>
-        <version>3.2.5-2017</version>
+        <version>3.2.6-2017</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 

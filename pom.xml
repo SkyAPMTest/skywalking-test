@@ -5,7 +5,7 @@
 
     <groupId>com.a.eye</groupId>
     <artifactId>skywalking-test</artifactId>
-    <version>3.2.5-2017</version>
+    <version>3.2.6-2017</version>
     <modules>
         <module>portal-project</module>
         <module>presistence-project</module>
@@ -28,7 +28,7 @@
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <source.compiler.level>1.8</source.compiler.level>
         <target.compiler.level>1.8</target.compiler.level>
-        <docker.imageTag.version>3.2.5-2017</docker.imageTag.version>
+        <docker.imageTag.version>3.2.6-2017</docker.imageTag.version>
         <!-- image name-->
         <docker.cache.imageName>skywalking/test-cache-server</docker.cache.imageName>
         <docker.portal.imageName>skywalking/test-portal</docker.portal.imageName>
