@@ -24,7 +24,7 @@
         <jedis.version>3.6.5</jedis.version>
         <spring.version>4.3.2.RELEASE</spring.version>
         <opentracing.version>0.20.7</opentracing.version>
-        <skywalking.version>3.2.5-2017</skywalking.version>
+        <skywalking.version>5.0.0-alpha</skywalking.version>
         <docker.plugin.version>0.4.13</docker.plugin.version>
         <source.compiler.level>1.8</source.compiler.level>
         <target.compiler.level>1.8</target.compiler.level>
@@ -50,19 +50,25 @@
         </dependency>
 
         <dependency>
-            <groupId>org.skywalking</groupId>
+            <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-log4j-1.x</artifactId>
             <version>${skywalking.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.skywalking</groupId>
+            <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-log4j-2.x</artifactId>
             <version>${skywalking.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>org.skywalking</groupId>
+            <groupId>org.apache.skywalking</groupId>
             <artifactId>apm-toolkit-opentracing</artifactId>
+            <version>${skywalking.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
             <version>${skywalking.version}</version>
         </dependency>
 
